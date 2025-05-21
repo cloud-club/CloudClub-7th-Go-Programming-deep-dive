@@ -15,9 +15,9 @@
 
 ### 🕑 Schedule & Members
 - **기간**: 2025.05 ~ 2025.07
-- **시간**: 미정
+- **시간**: 격주 수요일(5/21, 6/4, 6/18, 7/2) 총 4번 스터디 팀 전체 미팅
 - **장소**: 온라인 디스코드 미팅
-- **code push 마감**: 스터디 1일 전 ??? 까지
+- **code push 마감**: 매주 일요일 23시59분까지. (출결을 5월 21일을 기준으로 진행합니다.)
 
 
 ---
@@ -43,19 +43,27 @@
 
 ## 2. 👽 Our Squad
 
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/MinhoJJang"><img src="" width="100px; " alt=""/><br /><sub><b>
-👑손민우</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/doxxx93"><img src="" width="100px;" alt=""/><br /><sub><b>
-박창현</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/Hamburg-Whale"><img src="" width="100px;" alt=""/><br /><sub><b>
-이소정</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/yucori"><img src="" width="100px;" alt=""/><br /><sub><b>
-김유경</b></sub></a><br /></td>
 
-  </tr>
-</table>
+
+TEAM-A : {프로젝트 이름}
+<table> <tr> <td align="center"> <a href="https://github.com/Kid-Chang"> <img src="https://github.com/Kid-Chang.png" width="96px;" alt="박창현"/><br /> <sub><b style="font-size:16px;">박창현</b></sub> </a> </td> <td align="center"> <a href="https://github.com/kwx4957"> <img src="https://github.com/kwx4957.png" width="96px;" alt="김동영"/><br /> <sub><b style="font-size:16px;">김동영</b></sub> </a> </td> </tr> </table>
+TEAM-B : {프로젝트 이름}
+<table> <tr> <td align="center"> <a href="https://github.com/Kim-Yukyung"> <img src="https://github.com/Kim-Yukyung.png" width="96px;" alt="김유경"/><br /> <sub><b style="font-size:16px;">김유경</b></sub> </a> </td> <td align="center"> <a href="https://github.com/kiku99"> <img src="https://github.com/kiku99.png" width="96px;" alt="김재현"/><br /> <sub><b style="font-size:16px;">김재현</b></sub> </a> </td> </tr> </table>
+TEAM-C : {프로젝트 이름}
+<table> <tr> <td align="center"> <a href="https://github.com/EeeasyCode"> <img src="https://github.com/EeeasyCode.png" width="96px;" alt="이창민"/><br /> <sub><b style="font-size:16px;">이창민</b></sub> </a> </td> <td align="center"> <a href="https://github.com/kyungjunleeme"> <img src="https://github.com/kyungjunleeme.png" width="96px;" alt="이경준"/><br /> <sub><b style="font-size:16px;">이경준</b></sub> </a> </td> </tr> </table>
+TEAM-D : {프로젝트 이름}
+<table> <tr> <td align="center"> <a href="https://github.com/mjttong"> <img src="https://github.com/mjttong.png" width="96px;" alt="권민정"/><br /> <sub><b style="font-size:16px;">권민정</b></sub> </a> </td> <td align="center"> <a href="https://github.com/juanxiu"> <img src="https://github.com/juanxiu.png" width="96px;" alt="김연수"/><br /> <sub><b style="font-size:16px;">김연수</b></sub> </a> </td> </tr> </table>
+TEAM-E : {프로젝트 이름}
+<table> <tr> <td align="center"> <a href="https://github.com/Hamburg-Whale"> <img src="https://github.com/Hamburg-Whale.png" width="96px;" alt="조승빈"/><br /> <sub><b style="font-size:16px;">조승빈</b></sub> </a> </td> </tr> </table>
+TEAM-F : {프로젝트 이름}
+<table> <tr> <td align="center"> <a href="https://github.com/dpwns523"> <img src="https://github.com/dpwns523.png" width="96px;" alt="임예준"/><br /> <sub><b style="font-size:16px;">임예준</b></sub> </a> </td> <td align="center"> <a href="https://github.com/xxoznge"> <img src="https://github.com/xxoznge.png" width="96px;" alt="이소정"/><br /> <sub><b style="font-size:16px;">이소정</b></sub> </a> </td> </tr> </table>
+TEAM-G : {프로젝트 이름}
+<table> <tr> <td align="center"> <a href="https://github.com/MarkSon-42"> <img src="https://github.com/MarkSon-42.png" width="96px;" alt="손민우"/><br /> <sub><b style="font-size:16px;">👑손민우</b></sub> </a> </td> <td align="center"> <a href="https://github.com/KimMinWoooo"> <img src="https://github.com/KimMinWoooo.png" width="96px;" alt="김민우"/><br /> <sub><b style="font-size:16px;">김민우</b></sub> </a> </td> </tr> </table>
+
+
+> [!TIP]
+> {프로젝트 이름} 부분은 실제 프로젝트 이름으로 교체해 주세요!
+
 
 <br>
 
