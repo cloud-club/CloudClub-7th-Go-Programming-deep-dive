@@ -14,7 +14,7 @@
 <br>
 
 ### 🕑 Schedule & Members
-- **기간**: 2025.05 ~ 2025.07
+- **기간**: 2025.05.07 ~ 2025.07.02 약 8주
 - **시간**: 격주 수요일(5/21, 6/4, 6/18, 7/2) 총 4번 스터디 팀 전체 미팅
 - **장소**: 온라인 디스코드 미팅
 - **code push 마감**: 매주 일요일 23시59분까지. (출결을 5월 21일을 기준으로 진행합니다.)
@@ -67,19 +67,19 @@ TEAM-G : {프로젝트 이름}
 
 <br>
 
-## 3. ⛳ Curriculum (Season - 2)
-### Season 1 : 25.05.00 ~ 25.07.00 : go programming team project
+## 3. ⛳ Curriculum (클클 Season - 2)
+### Season 1 : 25.05.07 ~ 25.07.02 : go programming team project
 
-| Week | Learning Content Title | Details of Learning Content | Completion |
-| --- | --- | --- | --- |
-| Week 1 | Orientation |  |  |
-| Week 2 | Part 1 - Introduction | Chapter 1, Chapter 2 |  |
-| Week 3 | Part 2 - Principles | Chapter 3, Chapter 4 |  |
-| Week 4 | Part 2 - Principles | Chapter 5, Chapter 6 |  |
-| Week 5 | Part 2 - Principles | Chapter 7, Chapter 8 |  |
-| Week 6 | Part 3 - Practices | Chapter 9, Chapter 10 |  |
-| Week 7 | Part 3 - Practices | Chapter 11, Chapter 12 |  |
-| Week 8 | Part 3 - Practices | Chapter 13, Chapter 14 |  |
+| Week   | Learning Content Title                    | Details of Learning Content                                                                 | Completion |
+| :----- | :---------------------------------------- | :------------------------------------------------------------------------------------------ | :--------- |
+| Week 1 | 오리엔테이션 및 팀 빌딩               | Go 간단 빌드/실행 실습, GitHub PR 및 스터디 규칙 안내, 팀 빌딩 및 토이 프로젝트 주제 선정 |          ☑️  |
+| Week 2 | 토이 프로젝트 (1) - 자유 개발             | 팀별 자유 개발 진행                                                                         |  ☑️         |
+| Week 3 | 토이 프로젝트 (1) - 진행 상황 공유        | 팀별 개발 진행 상황 공유 (디스코드), 토이 프로젝트(1) 30% 이상 완성 목표                     |            |
+| Week 4 |  중간점검         |  토이 프로젝트 중간점검 및 회고             |            |
+| Week 5 | 토이 프로젝트 (2) - 진행 상황 공유        | 팀별 개발 진행 상황 공유 (디스코드), 토이 프로젝트 개발 진행                               |            |
+| Week 6 | 토이 프로젝트 (2) - 집중 개발             | 토이 프로젝트 80% 이상 완성 목표, 팀별 자유 개발 진행                                      |            |
+| Week 7 | 토이 프로젝트 (2) - 완료 및 회고          | 팀별 개발 진행 상황 공유 (디스코드), 토이 프로젝트 완성 및 회고                            |            |
+| Week 8 | 스터디 최종 발표                          | 전체 토이 프로젝트 결과 최종 발표                                                             |            |
 
 <br>
 
@@ -92,6 +92,3 @@ TEAM-G : {프로젝트 이름}
 ### a. 커밋 규칙
 추후 업데이트
 ```
-
-> 3회 이상 불참 시 7기를 수료할 수 없습니다.    
-> 각 스터디 모임에 참여하지 못할 경우, 사전에 Slack으로 사유를 작성해주세요
