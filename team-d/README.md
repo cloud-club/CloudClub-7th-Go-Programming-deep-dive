@@ -13,3 +13,28 @@
 ## 아키텍처 
 
 <img width="514" alt="Image" src="https://github.com/user-attachments/assets/602d3dc0-15da-4804-aa09-b29134319a17" />
+
+## 디렉토리 구조 
+
+```
+
+chat-app/
+├── client/              
+│   └── client.go        
+│
+├── server/              
+│   └── server.go        
+│
+├── chatProto/           
+│   └── chat.proto       
+│
+├── kafka/                # Kafka 프로듀서 / 컨슈머 관련 코드
+│   ├── producer.go       # Kafka에 메시지를 보내는 로직
+│   └── consumer.go       # Kafka로부터 메시지를 받는 로직
+│
+├── go.mod               
+└── go.sum               
+
+
+```
+
