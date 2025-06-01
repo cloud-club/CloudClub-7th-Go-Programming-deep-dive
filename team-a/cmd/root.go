@@ -12,16 +12,26 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "swarm",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "A lightweight load testing CLI built with Go",
+	Long: `Swarm is a simple and extensible load testing tool written in Go.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+It helps developers and QA engineers simulate concurrent HTTP requests,
+measure performance metrics, and analyze results easily.
+
+Supported features:
+  - Concurrent user simulation using goroutines
+  - Percentile analysis (P90, P95, P99)
+  - JSON result export and console analysis
+
+Examples:
+
+  Run a basic load test:
+    swarm run --host http://example.com --users 10 --duration 30s
+
+  Analyze the test result:
+    swarm analysis --input results.json
+
+`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
