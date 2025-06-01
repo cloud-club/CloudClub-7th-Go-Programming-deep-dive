@@ -42,7 +42,7 @@ var runCmd = &cobra.Command{
 					default:
 						start := time.Now()
 						resp, err := client.Get(host)
-						elapsed := time.Since(start)
+						elapsed := time.Since(start).Milliseconds()
 						if err != nil {
 
 							results <- model.Result{UserID: id, Duration: elapsed, Timestamp: time.Now(), Error: err.Error()}
