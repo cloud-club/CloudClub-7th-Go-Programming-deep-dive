@@ -7,7 +7,8 @@ ___
 
 ### 아키텍처
 
-<img width="997" alt="스크린샷 2025-05-31 오후 9 48 41" src="https://github.com/user-attachments/assets/5bca8a04-b373-4110-bbd3-84f16c3a2f6a" />
+<img width="976" alt="스크린샷 2025-06-01 오전 9 36 13" src="https://github.com/user-attachments/assets/4af693bd-c63f-4add-98c3-32970b8a2c98" />
+
 
 #### 모니터링 지표 [Go Metrics #10826 ](https://github.com/aaukhatov/grafana-dashboards)
 
