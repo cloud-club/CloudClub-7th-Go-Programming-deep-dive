@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	"net/http"
 	"os"
+	"swarm/internal/model"
 	"sync"
 	"time"
 )
@@ -17,21 +18,13 @@ var (
 	duration time.Duration
 )
 
-type Result struct {
-	UserID     int       `json:"user_id"`
-	StatusCode int       `json:"status_code"`
-	Duration   string    `json:"duration"`
-	Timestamp  time.Time `json:"timestamp"`
-	Error      string    `json:"error,omitempty"`
-}
-
 var runCmd = &cobra.Command{
 	Use:   "run",
 	Short: "Run a simple load test",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Printf("Starting test: %d users, target=%s, duration=%s\n", users, host, duration)
 
-		results := make(chan Result, users*100) // 충분히 큼직하게
+		results := make(chan model.Result, users*100) // 충분히 큼직하게
 
 		var wg sync.WaitGroup
 		ctx, cancel := context.WithTimeout(context.Background(), duration)
@@ -52,9 +45,9 @@ var runCmd = &cobra.Command{
 						elapsed := time.Since(start)
 						if err != nil {
 
-							results <- Result{UserID: id, Duration: elapsed.String(), Timestamp: time.Now(), Error: err.Error()}
+							results <- model.Result{UserID: id, Duration: elapsed, Timestamp: time.Now(), Error: err.Error()}
 						} else {
-							results <- Result{UserID: id, StatusCode: resp.StatusCode, Duration: elapsed.String(), Timestamp: time.Now()}
+							results <- model.Result{UserID: id, StatusCode: resp.StatusCode, Duration: elapsed, Timestamp: time.Now()}
 							resp.Body.Close()
 						}
 						time.Sleep(500 * time.Millisecond)
@@ -68,7 +61,7 @@ var runCmd = &cobra.Command{
 
 		close(results)
 
-		var allResults []Result
+		var allResults []model.Result
 		for res := range results {
 			allResults = append(allResults, res)
 		}
