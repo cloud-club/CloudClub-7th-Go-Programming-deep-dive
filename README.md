@@ -45,7 +45,7 @@
 
 
 
-TEAM-A : {프로젝트 이름}
+TEAM-A : Swarm
 <table> <tr> <td align="center"> <a href="https://github.com/Kid-Chang"> <img src="https://github.com/Kid-Chang.png" width="96px;" alt="박창현"/><br /> <sub><b style="font-size:16px;">박창현</b></sub> </a> </td> <td align="center"> <a href="https://github.com/kwx4957"> <img src="https://github.com/kwx4957.png" width="96px;" alt="김동영"/><br /> <sub><b style="font-size:16px;">김동영</b></sub> </a> </td> </tr> </table>
 TEAM-B : {프로젝트 이름}
 <table> <tr> <td align="center"> <a href="https://github.com/Kim-Yukyung"> <img src="https://github.com/Kim-Yukyung.png" width="96px;" alt="김유경"/><br /> <sub><b style="font-size:16px;">김유경</b></sub> </a> </td> <td align="center"> <a href="https://github.com/kiku99"> <img src="https://github.com/kiku99.png" width="96px;" alt="김재현"/><br /> <sub><b style="font-size:16px;">김재현</b></sub> </a> </td> </tr> </table>
