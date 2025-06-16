@@ -7,18 +7,9 @@ import (
 
 // Metric은 단일 메트릭 데이터 포인트를 나타냅니다
 type Metric struct {
-	Name      string            `json:"name"`
-	Value     float64           `json:"value"`
-	Labels    map[string]string `json:"labels"`
-	Timestamp time.Time         `json:"timestamp"`
-}
-
-// MetricFamily는 관련된 메트릭들의 그룹을 나타냅니다
-type MetricFamily struct {
-	Name    string   `json:"name"`
-	Type    string   `json:"type"`
-	Help    string   `json:"help"`
-	Metrics []Metric `json:"metrics"`
+	Name      string    `json:"name"`
+	Value     float64   `json:"value"`
+	Timestamp time.Time `json:"timestamp"`
 }
 
 // QueryResult는 메트릭 쿼리의 결과를 나타냅니다
