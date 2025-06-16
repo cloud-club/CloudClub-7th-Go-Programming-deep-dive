@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package grpcapi;
+
+option go_package = "golang-grpc-chat/grpcapi";
+
+service ChatService {
+  rpc Chat(stream ChatMessage) returns (stream ChatMessage);
+}
+
+message ChatMessage {
+  string user = 1;
+  string content = 2;
+  int64 timestamp = 3;
+}
