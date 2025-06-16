@@ -31,6 +31,11 @@ Tiny Prometheus는 다음 두 가지 핵심 기능에 집중합니다.
 
 ---
 
+# 아키텍처 오버뷰
+<img width="973" alt="arch overview" src="https://github.com/user-attachments/assets/970edc01-d468-45d5-b9cc-1db5e179d751" />
+
+
+
 ## 개발 방법론 및 협업 방식
 
 ### Go 언어 학습 병행
