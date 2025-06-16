@@ -32,12 +32,8 @@ grpc-chat/
 ├── internal/  # 기능적 로직 관리
 │   ├── domain/    #Domain: 유저와 메시지를 정의
 │   │   └── model.go
-│   ├── server/    #Server: server 기능 정의
-│   │   └── server.go
-│   ├── client/    #Client: client 기능 정의
-│   │   └── client.go
-│   ├── usecase/    #Usecase: 비즈니스 로직 분리, 테스트 가능
-│   │   └── chat_usecase.go
+│   ├── usecase/    #Usecase: 비즈니스 로직 분리
+│   │   └── chat_usecase.go  # client 등록 및 broadcast 등의 기능
 │   ├── port/    #Port: ChatService 인터페이스와 세션 저장소 정의
 │   │   ├── in/
 │   │   │   └── chat_service.go
