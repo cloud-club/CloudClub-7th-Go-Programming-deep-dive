@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package chat;
+option go_package = "grpc-chat/gen;pb";
+
+message ChatMessage {
+  string user = 1;       // 보내는 사람
+  string target_id = 2;         // 받는 사람 👈 이 줄 추가!
+  string message = 3;    // 메시지 본문
+  int64 timestamp = 4;
+}
+
+service ChatService {
+  rpc ChatStream(stream ChatMessage) returns (stream ChatMessage);
+}
+

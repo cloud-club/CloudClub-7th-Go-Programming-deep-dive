@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v4.25.3
-// source: chat.proto
+// source: proto/chat.proto
 
-package chatpb
+package pb
 
 import (
 	context "context"
@@ -111,5 +111,5 @@ var ChatService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "chat.proto",
+	Metadata: "proto/chat.proto",
 }
