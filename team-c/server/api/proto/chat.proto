@@ -1,0 +1,75 @@
+syntax = "proto3"; 
+
+package chat; 
+
+option go_package = "example.com/grpc-chat-app/gen;gen"; 
+
+import "google/protobuf/timestamp.proto"; 
+
+// 사용자 정보
+message User {
+  string id = 1;
+  string name = 2;
+}
+
+// 채팅방 정보
+message Room {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  google.protobuf.Timestamp created_at = 4;
+  int32 user_count = 5;
+}
+
+// 채팅 메시지
+message Message {
+  string id = 1;         
+  string content = 2;    
+  google.protobuf.Timestamp timestamp = 3;
+  string user_id = 4;
+  string user_name = 5;
+  string room_id = 6;
+}
+
+// 채팅방 연결 요청
+message JoinRoomRequest {
+  User user = 1;
+  string room_id = 2;
+}
+
+// 채팅방 생성 요청
+message CreateRoomRequest {
+  string name = 1;
+  string description = 2;
+  User creator = 3;
+}
+
+// 채팅방 목록 요청
+message ListRoomsRequest {}
+
+// 채팅방 목록 응답
+message ListRoomsResponse {
+  repeated Room rooms = 1;
+}
+
+// 응답으로 사용될 메시지
+message Response {
+  bool success = 1;
+  string message = 2;
+  Room room = 3;
+}
+
+// 채팅 서비스 정의
+service ChatService {
+  // 채팅방 목록 조회
+  rpc ListRooms(ListRoomsRequest) returns (ListRoomsResponse);
+  
+  // 채팅방 생성
+  rpc CreateRoom(CreateRoomRequest) returns (Response);
+  
+  // 채팅방 입장 및 메시지 스트림 생성
+  rpc JoinRoom(JoinRoomRequest) returns (stream Message);
+  
+  // 메시지 전송
+  rpc SendMessage(Message) returns (Response);
+}
