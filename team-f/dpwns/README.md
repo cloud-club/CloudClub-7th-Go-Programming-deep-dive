@@ -1,24 +1,37 @@
+### Fast Run
+___
+```
+- 서버 기동 (Terminal #1)
+# go run cmd/server/main.go
 
-#### Base Code
+- Simulator 기동 (Terminal #2)
+# go run cmd/simulator/main.go 
+📡 gRPC 부하 시뮬레이터 CLI 시작
+📚 사용 가능한 명령:
+  spawn <숫자> : 지정된 수만큼 클라이언트를 생성
+  broadcast <메시지> <숫자> : 모든 클라이언트가 메시지 전송
+  summary    : 현재 연결된 클라이언트 요약 출력
+  closeAll   : 현재 연결된 클라이언트 종료
+  exit       : 시뮬레이터 종료
+sim>  spawn 100
+sim> broadcast test-message 10
 
-Server <-> Client 간 양방향 통신이 아님, Client가 일방적으로 메시지를 전달 -> 메시지 큐의 성격
-
+- go resources check (Terminal #3)
+# go run cmd/metric/fetch_go_metrics.go 3.36.108.146 2112
+📡 Prometheus 메트릭 조회 중...
+go_gc_duration_seconds_sum               0          // GC 총 소요 시간 (초)
+go_gc_duration_seconds_count             2          // GC 발생 횟수
+go_goroutines                            408        // 현재 실행 중인 고루틴 수
+go_memstats_alloc_bytes                  10.52 MB   // 현재 할당된 메모리 바이트 수
+go_memstats_heap_alloc_bytes             10.52 MB   // 힙에 할당된 바이트 수
+go_memstats_heap_inuse_bytes             11.77 MB   // 사용 중인 힙 메모리
+go_memstats_next_gc_bytes                12.74 MB   // 다음 GC 발생까지 남은 바이트 수
+go_memstats_stack_inuse_bytes            2.38 MB    // 스택에 사용 중인 바이트 수
+go_memstats_sys_bytes                    19.21 MB   // Go가 OS에서 요청한 전체 메모리
+```
 ___
 
-#### 수정 사항
-
-Client에게 메시지를 전달하기 위한 구분자(Primary Key) 필요
-
-양방향 통신을 위해선 Server에서 CLI 기능 추가 필요
-```
-list: 연결된 client 목록을 보여줌
-enter <UUID>: 해당 uuid를 가진 client와 채팅
-clear: 정상 종료를 위한 client 커넥션 종료
-```
-
-___
-
-기능 추가에 따른 디렉토리 구조 분리
+### 디렉토리 구조
 ```
 grpc-chat/
 ├── go.mod  # go Module 선언
@@ -27,6 +40,10 @@ grpc-chat/
 │   └── server/
 │       └── main.go
 │   └── client/
+│       └── main.go
+│   └── metric/
+│       └── main.go
+│   └── simulator/
 │       └── main.go
 
 ├── internal/  # 기능적 로직 관리
@@ -42,6 +59,10 @@ grpc-chat/
 │   └── adapter/    #Adapter: gRPC 프레임워크와 Core Usecase 연결
 │       └── grpc/
 │           └── handler.go
+│           └── command_handler.go
+│           └── command_parser.go
+│   └── simulator/    #Simulator: 부하 기능 정의
+│       └── runner.go 
 
 ├── infrastructure/    #Infrastructure: 메모리 저장소 구현
 │   └── memory/    
