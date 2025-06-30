@@ -61,4 +61,8 @@ func (r *sessionRepo) ListUsersExcept(myID string) []string {
     }
     return result
 }
-
+func (r *sessionRepo) Count() int {
+    r.mu.Lock()
+    defer r.mu.Unlock()
+    return len(r.sessions)
+}

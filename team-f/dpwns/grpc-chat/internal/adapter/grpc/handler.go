@@ -28,7 +28,6 @@ func NewChatHandler(s in.ChatService, repo out.SessionRepository) *ChatHandler {
 }
 
 func (h *ChatHandler) ChatStream(stream pb.ChatService_ChatStreamServer) error {
-    log.Println("📡 ChatStream 연결 수신")
     
     firstMsg, err := stream.Recv()
     if err != nil {
@@ -38,7 +37,9 @@ func (h *ChatHandler) ChatStream(stream pb.ChatService_ChatStreamServer) error {
     // 클라이언트 접속 시 사용자 등록
     user := domain.User{ID: firstMsg.User, Name: firstMsg.User}
     h.service.Register(user)
+    sessionCount := h.sessionRepo.Count()
 
+    log.Printf("📡 ChatStream 연결 수신, 연결 클라이언트 수: %d", sessionCount)
     // 사용자가 받을 콜백함수 => 누군가 메시지를 보내면 send 함수가 실행되어 스트림에 전송
     h.sessionRepo.Add(user, func(msg domain.Message) error {
         return stream.Send(&pb.ChatMessage{
@@ -61,8 +62,9 @@ func (h *ChatHandler) ChatStream(stream pb.ChatService_ChatStreamServer) error {
     for {
         msgPb, err := stream.Recv()
         if err == io.EOF {
-	    log.Printf("✅ %s 연결 종료", user.ID)
             h.sessionRepo.Remove(user.ID)
+	    sessionCount := h.sessionRepo.Count() 
+	    log.Printf("✅ %s 연결 종료, 남은 Client 수: %d", user.ID, sessionCount)
             return nil
         }
         if err != nil {

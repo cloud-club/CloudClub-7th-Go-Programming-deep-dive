@@ -3,11 +3,16 @@ package main
 import (
     "log"
     "net"
+    "net/http"
+    
     adapter "grpc-chat/internal/adapter/grpc"
+    
     "grpc-chat/internal/usecase"
     "grpc-chat/infrastructure/memory"
+    
     pb "grpc-chat/gen"
     "github.com/grpc-ecosystem/go-grpc-prometheus"
+    "github.com/prometheus/client_golang/prometheus/promhttp"
     grpc "google.golang.org/grpc"                   // gRPC 프레임워크용 import 별도 지정
 )
 
@@ -18,9 +23,15 @@ func main() {
 
     lis, err := net.Listen("tcp", ":50051")
     if err != nil {
-        log.Fatalf("listen failed: %v", err)
+	    log.Fatalf("listen failed: %v", err)
     }
 
+    // 1. Prometheus /metrics HTTP 서버 시작Add commentMore actions
+    go func() {
+		http.Handle("/metrics", promhttp.Handler())
+		log.Println("📈 Prometheus 메트릭 노출: http://localhost:2112/metrics")
+		log.Fatal(http.ListenAndServe(":2112", nil))
+    }()
     // 프로메테우스 등록
     srv := grpc.NewServer(
         grpc.UnaryInterceptor(grpc_prometheus.UnaryServerInterceptor),

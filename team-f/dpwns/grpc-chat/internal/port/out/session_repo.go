@@ -9,5 +9,6 @@ type SessionRepository interface {
     List() map[string]func(msg domain.Message) error
     SendTo(userID string, msg domain.Message) error
     ListUsersExcept(excludeID string) []string
+    Count() int
 }
 
