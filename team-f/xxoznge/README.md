@@ -4,6 +4,9 @@
 
 ![Image](https://github.com/user-attachments/assets/cdde98bc-1a20-4120-83a0-ea785bca81d5)
 
+### 여러 명 채팅 예시
+![image](https://github.com/user-attachments/assets/c7f0077d-953a-493f-9000-ab8686f90501)
+
 ## 모니터링 (수정 필요)
 
 - go_goroutines: 현재 실행 중인 고루틴 수
