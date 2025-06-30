@@ -45,16 +45,15 @@ func (h *ChatHandler) Chat(stream grpcapi.ChatService_ChatServer) error {
 		delete(h.streams, tempID)
 		h.streams[user] = stream
 
-		// 브로드캐스트: 나를 제외한 모든 유저에게 전송
-		for u, s := range h.streams {
-			if u != user {
-				s.Send(&grpcapi.ChatMessage{
-					User:      msg.User,
-					Content:   msg.Content,
-					Timestamp: time.Now().Unix(),
-				})
-			}
+		// 브로드캐스트: 모든 유저에게 전송
+		for _, s := range h.streams {
+			s.Send(&grpcapi.ChatMessage{
+				User:      msg.User,
+				Content:   msg.Content,
+				Timestamp: time.Now().Unix(),
+			})
 		}
+
 		h.mu.Unlock()
 	}
 }
