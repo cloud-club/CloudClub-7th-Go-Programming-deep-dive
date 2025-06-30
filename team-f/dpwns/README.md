@@ -74,3 +74,14 @@ grpc-chat/
 │   └── chat.pb.go            # protoc-gen-go 생성
 │   └── chat_grpc.pb.go       # protoc-gen-go-grpc 생성
 ```
+
+
+### Grafana
+
+```
+# 테스트 시나리오
+spawn 100씩 증가
+test-message 100회 씩 전송
+```
+
+<img width="1343" alt="image" src="https://github.com/user-attachments/assets/88f67a5a-157f-4217-9bd2-f1a84a60e574" />
