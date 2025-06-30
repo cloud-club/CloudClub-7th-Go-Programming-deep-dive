@@ -1,0 +1,39 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Output of the go coverage tool
+*.coverprofile
+
+# Output of the go build command
+/build/
+/bin/
+/dist/
+
+# Logs
+*.log
+
+# IDE files
+.idea/
+.idea_modules/
+*.iml
+out/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Go workspace file
+go.work
+go.work.sum
+
+# Test cache
+/tmp/
+
+# CMake
+cmake-build-*/
