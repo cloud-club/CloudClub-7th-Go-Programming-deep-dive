@@ -2,7 +2,7 @@
 
 ## 시연 영상
 
-![Image](https://github.com/user-attachments/assets/06c329a4-3972-46ec-acc6-ad527f7b85ce)
+![Image](https://github.com/user-attachments/assets/cdde98bc-1a20-4120-83a0-ea785bca81d5)
 
 ## 모니터링 (수정 필요)
 
