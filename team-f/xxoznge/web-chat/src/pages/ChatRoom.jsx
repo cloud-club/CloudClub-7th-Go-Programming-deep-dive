@@ -35,13 +35,6 @@ function ChatRoom({ nickname, room, onLeave }) {
 
     return () => {
       if (socketRef.current?.readyState === WebSocket.OPEN) {
-        socketRef.current.send(
-          JSON.stringify({
-            user: nickname,
-            content: `${nickname}님이 퇴장하셨습니다.`,
-            timestamp: Date.now(),
-          })
-        );
         socketRef.current.close();
       }
       socketRef.current = null;
@@ -73,15 +66,17 @@ function ChatRoom({ nickname, room, onLeave }) {
 
   const handleLeave = () => {
     if (socketRef.current?.readyState === WebSocket.OPEN) {
-      socketRef.current.send({
-        user: nickname,
-        content: `${nickname}님이 퇴장하셨습니다.`,
-        timestamp: Date.now(),
-      });
+      socketRef.current.send(
+        JSON.stringify({
+          user: nickname,
+          content: `${nickname}님이 퇴장하셨습니다.`,
+          timestamp: Date.now(),
+        })
+      );
       socketRef.current.close();
     }
     socketRef.current = null;
-    onLeave(); // 👉 채팅방 선택 화면으로 돌아가기
+    onLeave();
   };
 
 
