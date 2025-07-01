@@ -2,10 +2,7 @@
 
 ## 시연 영상
 
-![Image](https://github.com/user-attachments/assets/cdde98bc-1a20-4120-83a0-ea785bca81d5)
-
-### 여러 명 채팅 예시
-![image](https://github.com/user-attachments/assets/c7f0077d-953a-493f-9000-ab8686f90501)
+![Image](https://github.com/user-attachments/assets/1e91ccff-e2a5-4e76-b970-b26d46767f30)
 
 ## 모니터링 (수정 필요)
 
