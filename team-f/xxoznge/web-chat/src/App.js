@@ -1,6 +1,5 @@
 // App.js
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import ChatRoom from "./pages/ChatRoom";
 
@@ -9,22 +8,8 @@ function App() {
   const [joined, setJoined] = useState(false);
   const [rooms] = useState(["📢 공지사항", "💬 자유게시판", "❓ 질문방"]);
   const [selectedRoom, setSelectedRoom] = useState(null);
-  const [ws, setWs] = useState(null);
-  const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    if (joined && selectedRoom) {
-      const socket = new WebSocket("ws://localhost:8080/ws");
-      socket.onmessage = (event) => {
-        const msg = JSON.parse(event.data);
-        setMessages((prev) => [...prev, msg]);
-      };
-      setWs(socket);
-      return () => socket.close();
-    }
-  }, [joined, selectedRoom, nickname]);
-
+  // ✅ 누락된 함수 추가
   const handleJoin = () => {
     if (!nickname.trim()) return;
     setJoined(true);
@@ -32,20 +17,6 @@ function App() {
 
   const handleRoomSelect = (room) => {
     setSelectedRoom(room);
-  };
-
-  const handleSend = (e) => {
-    e.preventDefault();
-    if (message.trim() && ws?.readyState === WebSocket.OPEN) {
-      ws.send(
-        JSON.stringify({
-          user: nickname,
-          content: message,
-          timestamp: Date.now(),
-        })
-      );
-      setMessage("");
-    }
   };
 
   return (
@@ -89,5 +60,3 @@ function App() {
 }
 
 export default App;
-
-

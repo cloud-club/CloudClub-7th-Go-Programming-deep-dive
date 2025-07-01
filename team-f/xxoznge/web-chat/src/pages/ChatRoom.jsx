@@ -1,5 +1,3 @@
-// ChatRoom.js
-
 import React, { useState, useEffect, useRef } from "react";
 import "./ChatRoom.css";
 
@@ -8,12 +6,14 @@ function ChatRoom({ nickname, room }) {
   const [input, setInput] = useState("");
   const socketRef = useRef(null);
   const messagesEndRef = useRef(null);
+  const [onlineCount, setOnlineCount] = useState(1);
 
   useEffect(() => {
     const socket = new WebSocket("ws://localhost:8080/ws");
     socketRef.current = socket;
 
     socket.onopen = () => {
+      // 입장 메시지 전송
       socket.send(
         JSON.stringify({
           user: nickname,
@@ -25,10 +25,26 @@ function ChatRoom({ nickname, room }) {
 
     socket.onmessage = (event) => {
       const msg = JSON.parse(event.data);
+
+      if (msg.type === "online-count") {
+        setOnlineCount(msg.count);
+        return;
+      }
+
       setMessages((prev) => [...prev, msg]);
     };
 
-    return () => socket.close();
+    return () => {
+      socket.send(
+        JSON.stringify({
+          user: nickname,
+          content: `${nickname}님이 퇴장하셨습니다.`,
+          timestamp: Date.now(),
+        })
+      );
+      socket.close();
+      socketRef.current = null;
+    };
   }, [nickname]);
 
   useEffect(() => {
@@ -36,7 +52,10 @@ function ChatRoom({ nickname, room }) {
   }, [messages]);
 
   const sendMessage = () => {
-    if (input.trim() !== "") {
+    if (
+      input.trim() !== "" &&
+      socketRef.current?.readyState === WebSocket.OPEN
+    ) {
       const message = {
         user: nickname,
         content: input,
@@ -53,21 +72,46 @@ function ChatRoom({ nickname, room }) {
 
   return (
     <div className="chat-container">
-      <div className="chat-header">{room} 채팅방</div>
+      <div className="chat-header">
+        <div className="chat-room-title">{room} 채팅방</div>
+        <div className="chat-online-count">👥 {onlineCount}명 접속 중</div>
+      </div>
+
       <div className="chat-messages">
-        {messages.map((msg, idx) => (
-          <div
-            key={idx}
-            className={`chat-bubble ${
-              msg.user === nickname ? "my-message" : "other-message"
-            }`}
-          >
-            <div className="chat-user">{msg.user}</div>
-            <div>{msg.content}</div>
-          </div>
-        ))}
+        {messages.map((msg, idx) => {
+          const isSystem =
+            msg.content.includes("입장하셨습니다") ||
+            msg.content.includes("퇴장하셨습니다");
+
+          if (isSystem) {
+            return (
+              <div key={idx} className="system-message">
+                {msg.content}
+              </div>
+            );
+          }
+
+          const isMine = msg.user === nickname;
+
+          return (
+            <div
+              key={idx}
+              className={`chat-message-wrapper ${isMine ? "my" : "other"}`}
+            >
+              <div className="chat-user">{msg.user}</div>
+              <div
+                className={`chat-bubble ${
+                  isMine ? "my-message" : "other-message"
+                }`}
+              >
+                {msg.content}
+              </div>
+            </div>
+          );
+        })}
         <div ref={messagesEndRef} />
       </div>
+
       <div className="chat-input-area">
         <input
           type="text"
