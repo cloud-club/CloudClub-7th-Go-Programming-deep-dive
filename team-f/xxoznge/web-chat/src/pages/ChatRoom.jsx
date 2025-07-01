@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./ChatRoom.css";
 
-function ChatRoom({ nickname, room }) {
+function ChatRoom({ nickname, room, onLeave }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const socketRef = useRef(null);
@@ -13,7 +13,6 @@ function ChatRoom({ nickname, room }) {
     socketRef.current = socket;
 
     socket.onopen = () => {
-      // 입장 메시지 전송
       socket.send(
         JSON.stringify({
           user: nickname,
@@ -35,14 +34,16 @@ function ChatRoom({ nickname, room }) {
     };
 
     return () => {
-      socket.send(
-        JSON.stringify({
-          user: nickname,
-          content: `${nickname}님이 퇴장하셨습니다.`,
-          timestamp: Date.now(),
-        })
-      );
-      socket.close();
+      if (socketRef.current?.readyState === WebSocket.OPEN) {
+        socketRef.current.send(
+          JSON.stringify({
+            user: nickname,
+            content: `${nickname}님이 퇴장하셨습니다.`,
+            timestamp: Date.now(),
+          })
+        );
+        socketRef.current.close();
+      }
       socketRef.current = null;
     };
   }, [nickname]);
@@ -70,13 +71,29 @@ function ChatRoom({ nickname, room }) {
     if (e.key === "Enter") sendMessage();
   };
 
+  const handleLeave = () => {
+    if (socketRef.current?.readyState === WebSocket.OPEN) {
+      socketRef.current.send({
+        user: nickname,
+        content: `${nickname}님이 퇴장하셨습니다.`,
+        timestamp: Date.now(),
+      });
+      socketRef.current.close();
+    }
+    socketRef.current = null;
+    onLeave(); // 👉 채팅방 선택 화면으로 돌아가기
+  };
+
+
   return (
     <div className="chat-container">
       <div className="chat-header">
-        <div className="chat-room-title">{room} 채팅방</div>
-        <div className="chat-online-count">👥 {onlineCount}명 접속 중</div>
-      </div>
+    <button onClick={handleLeave} className="leave-button">나가기</button>
+    <div className="chat-room-title"> {room}</div>
+    <div className="chat-online-count">👥 {onlineCount}명 접속 중</div>
+  </div>
 
+      
       <div className="chat-messages">
         {messages.map((msg, idx) => {
           const isSystem =
@@ -127,3 +144,4 @@ function ChatRoom({ nickname, room }) {
 }
 
 export default ChatRoom;
+

@@ -53,7 +53,13 @@ function App() {
           </div>
         </div>
       ) : (
-        <ChatRoom nickname={nickname} room={selectedRoom} />
+        <ChatRoom
+          nickname={nickname}
+          room={selectedRoom}
+          onLeave={() => {
+            setSelectedRoom(null); 
+          }}
+        />
       )}
     </div>
   );

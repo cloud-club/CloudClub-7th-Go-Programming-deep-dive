@@ -144,22 +144,26 @@
 }
 
 .chat-header {
+  position: relative;
   display: flex;
-  justify-content: center; 
+  justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  font-size: 1.3rem; 
+  padding: 12px 16px;
+  background: white;
+  font-size: 1.3rem;
   font-weight: bold;
   border-bottom: 1px solid #ccc;
-  background: white;
   color: #1f2937;
-  position: relative;
 }
 
 .chat-room-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .chat-online-count {
@@ -175,3 +179,18 @@
   border-radius: 0;     
 }
 
+.leave-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.chat-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
