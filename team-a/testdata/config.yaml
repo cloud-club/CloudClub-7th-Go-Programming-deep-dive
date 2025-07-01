@@ -1,0 +1,8 @@
+host: http://localhost:8080
+duration: 1m
+users: 50
+paths:
+  - path: /test1
+    ratio: 30
+  - path: /test2
+    ratio: 70
