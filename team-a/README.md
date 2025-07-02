@@ -32,8 +32,11 @@ Swarm is a Go-based load testing tool designed to simplify performance testing f
 ### Basic CLI Usage
 
 ```sh
-swarm --users 10 --duration 60 -H http://localhost:8080
-swarm --config=testdata/config.yaml
+# type 1
+swarm run --users 10 --duration 60 --host http://localhost:8080
+
+# type 2 
+swarm run --config=testdata/config.yaml
 ```
 
 ### Analysis Command
@@ -47,6 +50,7 @@ swarm analysis --input results.json
 This will print a detailed analysis including total requests, success/failure rates, latency percentiles, and time-based statistics.
 
 ## YAML Configuration 
+Ratio must be equal to 100
 ```yaml
 host: http://localhost:8080
 duration: 1h # example 1m, 10s
