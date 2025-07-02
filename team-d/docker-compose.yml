@@ -1,0 +1,48 @@
+
+networks:
+  kafka_network:
+
+services:
+  kafka:
+    image: bitnami/kafka:latest # KRaft 모드: 주키퍼 필요없음 
+    ports:
+    # 호스트의 앞 포트를 컨테이너의 뒷 포트에 바인딩
+      - '9092:9092' # 내부 네트워크 통신을 위한 PLAINTEXT 리스너
+      - '10000:10000' # 외부 접근을 위한 EXTERNAL 리스너
+    environment:
+      # KRaft 설정
+      - KAFKA_ENABLE_KRAFT=yes 
+      - KAFKA_CFG_BROKER_ID=1 #브로커id 와 node id 는 동일하게 
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_KRAFT_CLUSTER_ID=HsDBs9l6UUmQq7Y5E6bNlw # 고유 클러스터 ID, 모든 브로커에 동일하게 설정
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093 
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      # 리스너 설정 
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:10000
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://localhost:10000 # 호스트는 localhost로, 내부 서비스는 서비스명으로 
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - BITNAMI_DEBUG=true
+      # 클러스터 설정
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+      - KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=1
+    volumes:
+      - kafka_data:/bitnami/kafka/data
+
+
+  chat-server:
+    build: .
+    environment:
+      - KAFKA_BROKER=172.19.0.2:9092   # 외부 컨테이너에서 Kafka 컨테이너 접근
+      - KAFKA_TOPIC=chat-topic
+      - KAFKA_GROUP=chat-group-new # 새 그룹으로 
+    depends_on:
+      - kafka
+    # ports:
+    #   - "50051:50051" 
+
+volumes:
+  kafka_data:

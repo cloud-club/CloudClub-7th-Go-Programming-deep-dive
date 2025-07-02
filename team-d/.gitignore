@@ -1,0 +1,56 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binaries
+*_test
+*.test
+
+# Output of 'go build'
+# Either the executable file name (in the current directory) or the directory containing it (when using -o)
+# On Unix systems, 'go build' produces an executable in the current directory named after the last element
+# of the import path (or the directory name for main packages). On Windows it's .exe.
+# This list is a starting point; you may need to customize it based on your project's build output.
+# For example, if your main package is in cmd/app, you might want to ignore cmd/app/app or cmd/app/app.exe
+# depending on your OS and build command.
+# A common practice is to build to a 'bin' directory outside the source tree.
+# /<binary_name>
+# /bin/
+
+# Ignore any files starting with '.', which often includes temporary or hidden files.
+# This is a broad rule, be cautious if you have valid files starting with '.' that should be tracked.
+# .*
+
+# Ignore specific well-known hidden files that should almost never be committed
+.env
+.DS_Store
+Thumbs.db
+
+# Ignore generated protobuf files for Go
+*.pb.go
+*_grpc.pb.go
+
+# Dependencies
+# Ignore the vendored code, as it is managed by Go Modules
+# vendor/
+
+*.out
+
+# Go workspace file if created by `go work init`
+go.work
+
+# Go modules cache (usually outside the project, but sometimes tools might create files related to it)
+# This is less likely to be in the project directory itself.
+
+# VS Code specific files and directories
+.vscode/
+
+# Log files
+*.log
+
+# Temporary files
+*~
+\#*#
