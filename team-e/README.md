@@ -1,8 +1,8 @@
 # 🚀 Feather CI/CD Auto-Registration
-![[feather-logo.png]]
+![feather-logo](https://github.com/user-attachments/assets/d5028230-6b3b-4745-aec7-7940e31fa3b9)
 >Git 저장소를 Argo Workflows 및 ArgoCD와 자동으로 연결하여 CI/CD를 손쉽게 구현
 
-![[feather-intro|800]]
+![feather-intro](https://github.com/user-attachments/assets/0dfd52d0-4369-471e-bc98-552bd485132d)
 
 ---
 
