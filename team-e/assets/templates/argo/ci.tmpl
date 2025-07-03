@@ -1,0 +1,7 @@
+apk add --no-cache git {{.JDK}} {{.BuildTool}} docker-cli && \
+git clone {{.URL}}.git app && \
+cd app && \
+./gradlew build && \
+echo "$DOCKER_TOKEN" | docker login -u $DOCKER_USER --password-stdin && \
+docker build -t {{.ImageRegistry}}/{{.ImageName}}:{{.ImageTag}} . && \
+docker push {{.ImageRegistry}}/{{.ImageName}}:{{.ImageTag}}

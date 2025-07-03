@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: {{.SensorName}}
+  namespace: {{.Namespace}}
+spec:
+  template:
+    serviceAccountName: {{.ServiceAccountName}}
+  dependencies:
+    - name: gitea-push
+      eventSourceName: {{.EventSourceName}}
+      eventName: {{.EventName}}
+  triggers:
+    - template:
+        name: {{.TriggerName}}
+        argoWorkflow:
+          operation: submit
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
+              metadata:
+                generateName: {{.WorkflowNamePrefix}}
+              spec:
+                entrypoint: {{.WorkflowName}}
+                templates:
+                  - name: {{.WorkflowName}}
+                    container:
+                      image: docker:24.0
+                      command: ["/bin/sh", "-c"]
+                      args:
+                        - |-
+                          {{- .WorkflowScript | nindent 26 }}
+                      env:
+                        - name: DOCKER_USER
+                          value: {{.DockerUser}}
+                        - name: DOCKER_TOKEN
+                          valueFrom:
+                            secretKeyRef:
+                              name: docker-credentials
+                              key: token

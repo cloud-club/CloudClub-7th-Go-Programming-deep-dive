@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: {{.ApplicationSetName}}
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: {{.URL}}
+        revision: HEAD
+        directories:
+          - path: '*'             
+          - path: 'application-sets'
+            exclude: true   
+  template:
+    metadata:
+      name: '{{`{{path.basename}}`}}-app'
+      labels:
+        app.kubernetes.io/managed-by: feather
+    spec:
+      project: default
+      source:
+        repoURL: '{{`{{repoURL}}`}}'
+        targetRevision: '{{`{{revision}}`}}'
+        path: '{{`{{path}}`}}/manifest.yaml'
+      destination:
+        server: {{.ClusterURL}}
+        namespace: '{{`{{path.basename}}`}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

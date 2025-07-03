@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{.Namespace}}
+  labels:
+    app.kubernetes.io/name: {{.AppName}}
+    app.kubernetes.io/managed-by: feather
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.AppName}}
+  namespace: {{.Namespace}}
+  labels:
+    app: {{.AppName}}
+    app.kubernetes.io/name: {{.AppName}}
+    app.kubernetes.io/managed-by: feather
+spec:
+  replicas: {{.ReplicaCount}}
+  selector:
+    matchLabels:
+      app: {{.AppName}}
+  template:
+    metadata:
+      labels:
+        app: {{.AppName}}
+    spec:
+      serviceAccountName: {{.AppName}}-sa
+      securityContext:
+        fsGroup: {{.SecurityContext.FsGroup}}
+        runAsNonRoot: {{.SecurityContext.RunAsNonRoot}}
+        runAsUser: {{.SecurityContext.RunAsUser}}
+      containers:
+      - name: {{.AppName}}
+        image: {{.ImageRegistry}}/{{.ImageName}}:{{.ImageTag}}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: {{.ContainerPort}}
+        resources:
+          limits:
+            cpu: {{.ResourceConfig.LimitsCPU}}
+            memory: {{.ResourceConfig.LimitsMemory}}
+          requests:
+            cpu: {{.ResourceConfig.RequestsCPU}}
+            memory: {{.ResourceConfig.RequestsMemory}}
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: {{.SecurityContext.RunAsNonRoot}}
+          runAsUser: {{.SecurityContext.RunAsUser}}
+          capabilities:
+            drop:
+            - ALL
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{.AppName}}-sa
+  namespace: {{.Namespace}}
+  labels:
+    app.kubernetes.io/name: {{.AppName}}
+    app.kubernetes.io/managed-by: feather
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.AppName}}-service
+  namespace: {{.Namespace}}
+  labels:
+    app: {{.AppName}}
+    app.kubernetes.io/name: {{.AppName}}
+    app.kubernetes.io/managed-by: feather
+spec:
+  type: {{.ServiceConfig.ServiceType}}
+  ports:
+  - port: {{.ServiceConfig.ServicePort}}
+    targetPort: {{.ServiceConfig.TargetPort}}
+    protocol: TCP
+    name: http
+  selector:
+    app: {{.AppName}}
