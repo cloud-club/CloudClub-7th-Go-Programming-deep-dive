@@ -1,0 +1,151 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+/* 전체 배경 */
+.login-exit-main-container {
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* 카드 */
+.login-exit-card {
+  display: flex;
+  flex-direction: row;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  width: 100vw;
+  max-width: 900px;
+  min-width: 300px;
+  height: 75vh;
+  max-height: 650px;
+  min-height: 340px;
+  overflow: hidden;
+  transition: width 0.3s, height 0.3s;
+}
+
+/* 좌측 영역 */
+.login-exit-left {
+  flex: 1.2 1 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 80px;
+  background: var(--card-bg);
+  min-width: 200px;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+.login-exit-logo {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 제목 */
+.login-exit-title {
+  font-size: 1.65rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text-color);
+  text-align: left;
+  letter-spacing: -0.5px;
+  width: 100%;
+  word-break: keep-all;
+}
+
+/* 설명 */
+.login-exit-desc {
+  color: var(--desc-color);
+  font-size: 0.98rem;
+  margin-bottom: 34px;
+  text-align: left;
+  line-height: 1.6;
+  width: 100%;
+  max-width: 320px;
+  word-break: keep-all;
+}
+
+/* 버튼 그룹 (세로 정렬, 설명과 좌우 여백 일치) */
+.login-exit-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 200px;
+  align-items: stretch;
+  margin-bottom: 0;
+}
+
+/* 버튼 스타일 */
+.login-exit-btn {
+  padding: 13px 0;
+  border-radius: 16px;
+  border: none;
+  font-size: 1.01rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.login-exit-btn.login {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.login-exit-btn.login:hover {
+  background: #29b6f6;
+}
+
+.login-exit-btn.exit {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.login-exit-btn.exit:hover {
+  background: #b3e5fc;
+}
+
+/* 우측 일러스트 영역 */
+.login-exit-right {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--secondary-color);
+  min-width: 120px;
+  box-sizing: border-box;
+}
+
+.login-exit-illustration {
+  width: 90%;
+  max-width: 340px;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(79,195,247,0.10);
+  height: auto;
+  display: block;
+}

@@ -1,0 +1,31 @@
+//edition = "2023";
+
+syntax = "proto3";
+
+package chat;
+
+option go_package = "gRPC-based-chatting/chatProto;chatProto";
+
+import "google/protobuf/timestamp.proto";
+
+message ChatMessage {
+  string channel = 1; // 채널 (채팅방 ID)
+  string sender = 2;    // 송신자
+  string receiver = 3;  // 수신자
+  string content = 4; // 내용
+  google.protobuf.Timestamp timestamp = 5; // 타임스탬프
+}
+
+// 채널 목룍 요청/응답 메시지 
+message ListChannelsRequest {}
+
+message ListChannelsResponse {
+  repeated string channel_ids = 1;
+}
+
+service ChatService {
+  // ChatStream: 양방향 스트리밍 RPC
+  rpc ChatStream(stream ChatMessage) returns (stream ChatMessage);
+  // 채널(채팅방) ID 목록 조회
+  rpc ListChannels(ListChannelsRequest) returns (ListChannelsResponse);
+}
